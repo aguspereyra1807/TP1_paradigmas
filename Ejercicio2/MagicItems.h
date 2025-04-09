@@ -6,6 +6,7 @@
 
 enum class MAGIC_T {Dark, Light, Anti};
 enum class MATERIAL_T {Wood, Steel, Diamond};
+enum class EFFECT_T {Thorns, Burn, Electrify};
 
 class Potion: public MagicItem {
     public:
@@ -48,12 +49,11 @@ class SpellsBook: public MagicItem {
         const string language;
         const string category;
         const string author;
-
 };
 
 class Amulet: public MagicItem {
     public:
-        Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity);
+        Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect);
 
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
         
@@ -67,9 +67,30 @@ class Amulet: public MagicItem {
         const MAGIC_T magicType;
         float intensity;
         const int rarity; // 1-5
-        string characterEffect;
+        const string characterEffect;
 
         float calculateIntensity();
+};
 
+class Cane: public MagicItem {
+    public:
+        Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int length, float hardness);
+
+        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+
+        MATERIAL_T getMaterial() const;
+        EFFECT_T getHitEffect() const;
+        int getLength() const;
+        float getHardness() const;
+
+    private:
+        const MATERIAL_T material;
+        const EFFECT_T hitEffect;
+        const int length;
+        const float hardness;
+        float strength;
+
+
+        float calculateStrength();
 
 };

@@ -2,13 +2,7 @@
 
 // Potion
 
-Potion::Potion(
-    double power, 
-    int level, 
-    set<string> effects, 
-    int duration, 
-    float intensity, 
-    int uses)
+Potion::Potion(double power, int level, set<string> effects, int duration, float intensity, int uses)
     : MagicItem(power, level), duration(duration), effectsIntensity(intensity) {
         effectsList = effects; 
         usesLeft = uses;
@@ -71,20 +65,13 @@ float Potion::calculateEffectiveness() {
 
 // SpellsBook
 
-SpellsBook::SpellsBook(
-    double power, 
-    int level, 
-    MAGIC_T type, 
-    int pages, 
-    string language, 
-    string category, 
-    string author)
+SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author)
     :   MagicItem(power, level),
-    pagesAmount(pages),
-    spellsType(type),
-    language(language),
-    category(category),
-    author(author) {}
+        pagesAmount(pages),
+        spellsType(type),
+        language(language),
+        category(category),
+        author(author) {}
     
     
     double SpellsBook::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
@@ -123,16 +110,12 @@ string SpellsBook::getAuthor() const {
 
 // Amulet
 
-Amulet::Amulet(
-    double power, 
-    int level, 
-    MATERIAL_T material,
-    MAGIC_T magicType,
-    int rarity)
+Amulet::Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect)
     :   MagicItem(power, level),
         material(material),
         magicType(magicType),
-        rarity(rarity) {
+        rarity(rarity),
+        characterEffect(effect) {
             intensity = calculateIntensity();
         }
 
@@ -189,4 +172,70 @@ float Amulet::calculateIntensity() {
         break;
     }
     return x*y;
+}
+
+// Cane
+
+Cane::Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int length, float hardness)
+    :   MagicItem(power, level),
+        material(material),
+        hitEffect(effect),
+        length(length),
+        hardness(hardness) {
+            strength = calculateStrength();
+        }
+
+double Cane::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+    float x, y;
+    switch (hitEffect)
+    {
+    case EFFECT_T::Thorns:
+        x = 1.0;
+        break;
+    case EFFECT_T::Burn:
+        x = 1.25;
+        break;
+    case EFFECT_T::Electrify:
+        x = 1.5;
+        break;
+    default:
+        x = 0.9;
+        break;
+    }
+    switch (material)
+    {
+    case MATERIAL_T::Wood:
+        y = 0.5;
+        break;
+    case MATERIAL_T::Steel:
+        y = 1.0;
+        break;
+    case MATERIAL_T::Diamond:
+        y = 1.5;
+        break;
+    default:
+        y = 0.9;
+        break;
+    }
+    return x*y*strength;
+}
+
+MATERIAL_T Cane::getMaterial() const {
+    return material;
+}
+
+EFFECT_T Cane::getHitEffect() const {
+    return hitEffect;
+}
+
+int Cane::getLength() const {
+    return length;
+}
+
+float Cane::getHardness() const {
+    return hardness;
+}
+
+float Cane::calculateStrength() {
+    return (length/2)*hardness;
 }
