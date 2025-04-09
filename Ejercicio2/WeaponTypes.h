@@ -10,6 +10,7 @@ class MagicItem: public Weapon { // Clase Abstracta
 
     protected:
         const int magicLevel;
+        const double magicPower;
 };
 
 class CombatWeapon: public Weapon { // Clase Abstracta
@@ -21,4 +22,5 @@ class CombatWeapon: public Weapon { // Clase Abstracta
 
     protected:
         const float criticChance = 1; // critic >= 1
+        const double physicalDamage;
 };
