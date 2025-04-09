@@ -1,9 +1,11 @@
 #pragma once
 
 #include <set>
+#include <string>
 #include "WeaponTypes.h"
 
-enum class MAGIC_TYPE {Dark, Light, Anti};
+enum class MAGIC_T {Dark, Light, Anti};
+enum class MATERIAL_T {Wood, Steel, Diamond};
 
 class Potion: public MagicItem {
     public:
@@ -31,20 +33,43 @@ class Potion: public MagicItem {
 
 class SpellsBook: public MagicItem {
     public:
-        SpellsBook(double power, int level, MAGIC_TYPE type, int pages, string language, string category, string author);
+        SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author);
         
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
         
-        MAGIC_TYPE getSpellsType() const;
+        MAGIC_T getSpellsType() const;
         string getLanguage() const;
         string getCategory() const;
         string getAuthor() const;
         
     private:
         const int pagesAmount;
-        const MAGIC_TYPE spellsType;
+        const MAGIC_T spellsType;
         const string language;
         const string category;
         const string author;
+
+};
+
+class Amulet: public MagicItem {
+    public:
+        Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity);
+
+        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        
+        MATERIAL_T getMaterial() const;
+        MAGIC_T getMagicType() const;
+        int getRarity() const;
+        string getCharacterEffect() const;
+
+    private:
+        const MATERIAL_T material;
+        const MAGIC_T magicType;
+        float intensity;
+        const int rarity; // 1-5
+        string characterEffect;
+
+        float calculateIntensity();
+
 
 };

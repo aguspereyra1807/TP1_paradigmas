@@ -71,41 +71,43 @@ float Potion::calculateEffectiveness() {
 
 // SpellsBook
 
-double SpellsBook::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
-    float intensity;
-    switch (spellsType) {
-        case MAGIC_TYPE::Light:
-            intensity = 1.0;
-            break;
-        case MAGIC_TYPE::Anti:
-            intensity = 1.25;
-            break;
-        case MAGIC_TYPE::Dark:
-            intensity = 1.5;
-        default:
-            break;
-    }
-    return magicPower*intensity*(pagesAmount/100);
-}
-
 SpellsBook::SpellsBook(
     double power, 
     int level, 
-    MAGIC_TYPE type, 
+    MAGIC_T type, 
     int pages, 
     string language, 
     string category, 
     string author)
     :   MagicItem(power, level),
-        pagesAmount(pages),
-        spellsType(type),
-        language(language),
-        category(category),
-        author(author) {}
-
-MAGIC_TYPE SpellsBook::getSpellsType() const {
-    return spellsType;
-}
+    pagesAmount(pages),
+    spellsType(type),
+    language(language),
+    category(category),
+    author(author) {}
+    
+    
+    double SpellsBook::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+        float intensity;
+        switch (spellsType) {
+            case MAGIC_T::Light:
+            intensity = 1.0;
+            break;
+            case MAGIC_T::Anti:
+            intensity = 1.25;
+            break;
+            case MAGIC_T::Dark:
+            intensity = 1.5;
+            default:
+            intensity = 0.9;
+            break;
+        }
+        return magicPower*intensity*(pagesAmount/100);
+    }
+    
+    MAGIC_T SpellsBook::getSpellsType() const {
+        return spellsType;
+    }
 
 string SpellsBook::getLanguage() const {
     return language;
@@ -117,4 +119,74 @@ string SpellsBook::getCategory() const {
 
 string SpellsBook::getAuthor() const {
     return author;
+}
+
+// Amulet
+
+Amulet::Amulet(
+    double power, 
+    int level, 
+    MATERIAL_T material,
+    MAGIC_T magicType,
+    int rarity)
+    :   MagicItem(power, level),
+        material(material),
+        magicType(magicType),
+        rarity(rarity) {
+            intensity = calculateIntensity();
+        }
+
+double Amulet::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+    return magicPower*intensity;
+}
+
+MATERIAL_T Amulet::getMaterial() const {
+    return material;
+}
+
+MAGIC_T Amulet::getMagicType() const {
+    return magicType;
+}
+
+int Amulet::getRarity() const {
+    return rarity;
+}
+
+string Amulet::getCharacterEffect() const {
+    return characterEffect;
+}
+
+float Amulet::calculateIntensity() {
+    float x, y;
+    switch (magicType)
+    {
+    case MAGIC_T::Light:
+        x = 1.0;
+        break;
+    case MAGIC_T::Anti:
+        x = 1.25;
+        break;
+    case MAGIC_T::Dark:
+        x = 1.5;
+        break;
+    default:
+        x = 0.9;
+        break;
+    }
+    switch (material)
+    {
+    case MATERIAL_T::Wood:
+        y = 0.5;
+        break;
+    case MATERIAL_T::Steel:
+        y = 1.0;
+        break;
+    case MATERIAL_T::Diamond:
+        y = 1.5;
+        break;
+    default:
+        y = 0.9;
+        break;
+    }
+    return x*y;
 }
