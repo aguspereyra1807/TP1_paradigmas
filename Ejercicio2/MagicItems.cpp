@@ -68,3 +68,53 @@ unique_ptr<Potion> Potion::operator+(Potion& other) const {
 float Potion::calculateEffectiveness() {
     return effectsIntensity*(duration/10)*(effectsList.size()/2);
 }
+
+// SpellsBook
+
+double SpellsBook::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+    float intensity;
+    switch (spellsType) {
+        case MAGIC_TYPE::Light:
+            intensity = 1.0;
+            break;
+        case MAGIC_TYPE::Anti:
+            intensity = 1.25;
+            break;
+        case MAGIC_TYPE::Dark:
+            intensity = 1.5;
+        default:
+            break;
+    }
+    return magicPower*intensity*(pagesAmount/100);
+}
+
+SpellsBook::SpellsBook(
+    double power, 
+    int level, 
+    MAGIC_TYPE type, 
+    int pages, 
+    string language, 
+    string category, 
+    string author)
+    :   MagicItem(power, level),
+        pagesAmount(pages),
+        spellsType(type),
+        language(language),
+        category(category),
+        author(author) {}
+
+MAGIC_TYPE SpellsBook::getSpellsType() const {
+    return spellsType;
+}
+
+string SpellsBook::getLanguage() const {
+    return language;
+}
+
+string SpellsBook::getCategory() const {
+    return category;
+}
+
+string SpellsBook::getAuthor() const {
+    return author;
+}

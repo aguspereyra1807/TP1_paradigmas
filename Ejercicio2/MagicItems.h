@@ -31,16 +31,20 @@ class Potion: public MagicItem {
 
 class SpellsBook: public MagicItem {
     public:
-        SpellsBook(MAGIC_TYPE type, int pages, string language, string category, string author);
-        MAGIC_TYPE getSpellsType();
-
+        SpellsBook(double power, int level, MAGIC_TYPE type, int pages, string language, string category, string author);
+        
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
         
+        MAGIC_TYPE getSpellsType() const;
+        string getLanguage() const;
+        string getCategory() const;
+        string getAuthor() const;
+        
     private:
-        int pagesAmount;
-        MAGIC_TYPE spellsType;
-        string language;
-        string category;
-        string author;
+        const int pagesAmount;
+        const MAGIC_TYPE spellsType;
+        const string language;
+        const string category;
+        const string author;
 
 };
