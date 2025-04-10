@@ -1,7 +1,5 @@
 #pragma once
 
-#include <set>
-#include <string>
 #include "WeaponTypes.h"
 
 enum class MAGIC_T {Dark, Light, Anti};
@@ -13,6 +11,7 @@ class Potion: public MagicItem {
         Potion(double power, int level, set<string> effects, int duration, float intensity, int uses);
 
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        string getType() const override;
 
         void showEffects() const;
         void addEffect(string effect);
@@ -22,7 +21,7 @@ class Potion: public MagicItem {
         
         unique_ptr<Potion> operator+(Potion& other) const;
         
-        private:
+    private:
         set<string> effectsList;
         const int duration;
         const float effectsIntensity; // intensity >= 1
@@ -37,6 +36,7 @@ class SpellsBook: public MagicItem {
         SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author);
         
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        string getType() const override;
         
         MAGIC_T getSpellsType() const;
         string getLanguage() const;
@@ -56,6 +56,7 @@ class Amulet: public MagicItem {
         Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect);
 
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        string getType() const override;
         
         MATERIAL_T getMaterial() const;
         MAGIC_T getMagicType() const;
@@ -77,6 +78,7 @@ class Cane: public MagicItem {
         Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int length, float hardness);
 
         double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        string getType() const override;
 
         MATERIAL_T getMaterial() const;
         EFFECT_T getHitEffect() const;

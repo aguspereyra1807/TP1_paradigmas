@@ -3,7 +3,7 @@
 // Potion
 
 Potion::Potion(double power, int level, set<string> effects, int duration, float intensity, int uses)
-    : MagicItem(power, level), duration(duration), effectsIntensity(intensity) {
+    : MagicItem(power, level, "Potion"), duration(duration), effectsIntensity(intensity) {
         effectsList = effects; 
         usesLeft = uses;
         effectiveness = calculateEffectiveness();
@@ -60,13 +60,13 @@ unique_ptr<Potion> Potion::operator+(Potion& other) const {
 }
 
 float Potion::calculateEffectiveness() {
-    return effectsIntensity*(duration/10)*(effectsList.size()/2);
+    return effectsIntensity*(static_cast<float>(duration)/10)*(static_cast<float>(effectsList.size())/2);
 }
 
 // SpellsBook
 
 SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author)
-    :   MagicItem(power, level),
+    :   MagicItem(power, level, "Spells Book"),
         pagesAmount(pages),
         spellsType(type),
         language(language),
@@ -111,7 +111,7 @@ string SpellsBook::getAuthor() const {
 // Amulet
 
 Amulet::Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect)
-    :   MagicItem(power, level),
+    :   MagicItem(power, level, "Amulet"),
         material(material),
         magicType(magicType),
         rarity(rarity),
@@ -177,7 +177,7 @@ float Amulet::calculateIntensity() {
 // Cane
 
 Cane::Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int length, float hardness)
-    :   MagicItem(power, level),
+    :   MagicItem(power, level, "Cane"),
         material(material),
         hitEffect(effect),
         length(length),

@@ -8,5 +8,6 @@ using namespace std;
 class Weapon { // Interfaz
     public:
         virtual double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) = 0;
+        virtual string getType() const = 0;
         virtual ~Weapon();
 };

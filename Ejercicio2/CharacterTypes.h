@@ -27,4 +27,4 @@ class Warrior: public Character {
         const double magicResistance;
         const double physicalResistance;
         const int physicState;
-}
+};
