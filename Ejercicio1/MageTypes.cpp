@@ -18,7 +18,7 @@ Conjurer::Conjurer(double health, float resistance, string name, vector<shared_p
     summonedCreatures = vector<string>();
     summonCreature("Cyclop");
     summonCreature("Wraith");
-    summonCreature("Skeleton");
+    summonCreature("Skeleton")  ;
 }
 
 void Conjurer::summonCreature(string creature) {
