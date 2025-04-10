@@ -2,6 +2,8 @@
 
 #include "WeaponTypes.h"
 
+enum class QUALITY {FactoryNew, MinimalWear, FieldTested, WellWorn, BattleScarred};
+
 class SimpleAxe: public CombatWeapon {
     public:
         SimpleAxe(double damage, float critic, bool state, float weight, MATERIAL_T material);
@@ -38,7 +40,18 @@ class DoubleAxe: public CombatWeapon {
 };
 
 class Sword: public CombatWeapon {
+    public:
+        Sword(double damage, float critic, bool broken, QUALITY quality, float accuracy);
 
+        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        bool isBroken() const;
+        QUALITY getQuality() const;
+        float getAccuracy() const;
+
+    private:
+        bool broken;
+        const QUALITY quality;
+        const float accuracy;
 };
 
 class Spear: public CombatWeapon {
@@ -61,5 +74,15 @@ class Spear: public CombatWeapon {
 };
 
 class Club: public CombatWeapon {
+    public:
+        Club(double damage, float kg, bool hasSpykes, MATERIAL_T madeOf); // 0 critic
 
+        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        bool hasSpykes() const;
+        MATERIAL_T getMaterial() const;
+
+    private:
+        const float weight;
+        const bool spykes;
+        const MATERIAL_T material;
 };

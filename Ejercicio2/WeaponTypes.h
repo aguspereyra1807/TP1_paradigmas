@@ -25,7 +25,7 @@ class CombatWeapon: public Weapon { // Clase Abstracta
         virtual double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
         string getType() const override;
         
-        protected:
+    protected:
         const string type;
         const float criticChance = 0.0;
         const double physicalDamage;

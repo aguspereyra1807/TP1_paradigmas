@@ -63,6 +63,34 @@ int DoubleAxe::getSharpness() const {
     return sharpness;
 }
 
+// Sword
+
+Sword::Sword(double damage, float critic, bool broken, QUALITY quality, float accuracy)
+    : CombatWeapon(damage, critic, "Sword"), quality(quality), accuracy(accuracy) {
+        broken = broken;
+}
+
+double Sword::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+    float x = 1, y = 1;
+    if (isCritic()) x = 1.75;
+    if (isBroken()) y = 0.5;
+    return physicalDamage*x*y*(1-enemyPhysicalResistance);
+}
+
+bool Sword::isBroken() const {
+    if (broken) return true;
+    return false;
+}
+
+QUALITY Sword::getQuality() const {
+    return quality;
+}
+
+float Sword::getAccuracy() const {
+    return accuracy;
+}
+
+
 // Spear
 
 Spear::Spear(double damage, float critic, int reach, float sharpness, MATERIAL_T material)
@@ -88,4 +116,25 @@ MATERIAL_T Spear::getMaterial() const {
 
 void Spear::reinforceTip() {
     pierceLevel++;
+}
+
+// Club
+
+Club::Club(double damage, float kg, bool hasSpykes, MATERIAL_T madeOf)
+    :   CombatWeapon(damage, 0, "Club"), weight(kg), spykes(hasSpykes), material(material) {
+}
+
+double Club::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+    float x = 1;
+    if (hasSpykes()) x = 1.85;
+    return physicalDamage*x*(1-enemyPhysicalResistance);
+}
+
+bool Club::hasSpykes() const {
+    if (spykes) return true;
+    return false;
+}
+
+MATERIAL_T Club::getMaterial() const {
+    return material;
 }
