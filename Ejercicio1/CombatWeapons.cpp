@@ -7,11 +7,11 @@ SimpleAxe::SimpleAxe(double damage, float critic, bool state, float weight, MATE
         state = state;
 }
 
-double SimpleAxe::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+double SimpleAxe::getDamage(float enemyResistance) {
     float discount = 1, x = 1.0;
     if (isRusty()) discount = 0.7;
     if (isCritic()) x = 1.75;
-    return physicalDamage*discount*x*(1-enemyPhysicalResistance);
+    return physicalDamage*discount*x*(1-enemyResistance);
 }
 
 bool SimpleAxe::isRusty() const {
@@ -38,12 +38,12 @@ DoubleAxe::DoubleAxe(double damage, float critic, bool state, float doubleChance
         state = state;
 }
 
-double DoubleAxe::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+double DoubleAxe::getDamage(float enemyResistance) {
     float discount = 1, x = 1.0, y = 1.0;
     if (isRusty()) discount = 0.7;
     if (isCritic()) x = 1.75;
     if (isDoubleHit()) y = 1.5;
-    return physicalDamage*discount*x*y*(1-enemyPhysicalResistance);
+    return physicalDamage*discount*x*y*(1-enemyResistance);
 }
 
 bool DoubleAxe::isRusty() const {
@@ -70,11 +70,11 @@ Sword::Sword(double damage, float critic, bool broken, QUALITY quality, float ac
         broken = broken;
 }
 
-double Sword::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+double Sword::getDamage(float enemyResistance) {
     float x = 1, y = 1;
     if (isCritic()) x = 1.75;
     if (isBroken()) y = 0.5;
-    return physicalDamage*x*y*(1-enemyPhysicalResistance);
+    return physicalDamage*x*y*(1-enemyResistance);
 }
 
 bool Sword::isBroken() const {
@@ -97,9 +97,9 @@ Spear::Spear(double damage, float critic, int reach, float sharpness, MATERIAL_T
     :   CombatWeapon(damage, critic, "Spear"), reach(reach), sharpness(sharpness), material(material) {
 }
 
-double Spear::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
-    if (isCritic()) return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyPhysicalResistance)* 1.75;
-    else return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyPhysicalResistance);
+double Spear::getDamage(float enemyResistance) {
+    if (isCritic()) return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyResistance)* 1.75;
+    else return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyResistance);
 }
 
 int Spear::getReach() const {
@@ -124,10 +124,10 @@ Club::Club(double damage, float kg, bool hasSpykes, MATERIAL_T madeOf)
     :   CombatWeapon(damage, 0, "Club"), weight(kg), spykes(hasSpykes), material(material) {
 }
 
-double Club::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+double Club::getDamage(float enemyResistance) {
     float x = 1;
     if (hasSpykes()) x = 1.85;
-    return physicalDamage*x*(1-enemyPhysicalResistance);
+    return physicalDamage*x*(1-enemyResistance);
 }
 
 bool Club::hasSpykes() const {

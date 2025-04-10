@@ -9,7 +9,7 @@ class Potion: public MagicItem {
     public:
         Potion(double power, int level, set<string> effects, int duration, float intensity, int uses);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
         string getType() const override;
 
         void showEffects() const;
@@ -34,7 +34,7 @@ class SpellsBook: public MagicItem {
     public:
         SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author);
         
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
         string getType() const override;
         
         MAGIC_T getSpellsType() const;
@@ -54,7 +54,7 @@ class Amulet: public MagicItem {
     public:
         Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
         string getType() const override;
         
         MATERIAL_T getMaterial() const;
@@ -76,7 +76,7 @@ class Cane: public MagicItem {
     public:
         Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int length, float hardness);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
         string getType() const override;
 
         MATERIAL_T getMaterial() const;

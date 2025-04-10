@@ -10,7 +10,7 @@ enum class MATERIAL_T {Wood, Steel, Diamond};
 class MagicItem: public Weapon { // Clase Abstracta
     public:
         MagicItem(double power, int level, const string name);
-        virtual double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        virtual double getDamage(float enemyResistance) override;
         string getType() const override;
 
         protected:
@@ -22,7 +22,7 @@ class MagicItem: public Weapon { // Clase Abstracta
 class CombatWeapon: public Weapon { // Clase Abstracta
     public:
         CombatWeapon(double damage, float critic, const string name);
-        virtual double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        virtual double getDamage(float enemyResistance) override;
         string getType() const override;
         
     protected:

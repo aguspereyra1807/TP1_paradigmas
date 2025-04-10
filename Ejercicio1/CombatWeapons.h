@@ -8,7 +8,7 @@ class SimpleAxe: public CombatWeapon {
     public:
         SimpleAxe(double damage, float critic, bool state, float weight, MATERIAL_T material);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
 
         bool isRusty() const;
         void clean();
@@ -26,7 +26,7 @@ class DoubleAxe: public CombatWeapon {
     public:
         DoubleAxe(double damage, float critic, bool state, float doubleChance, int sharpness);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
 
         bool isRusty() const;
         void clean();
@@ -43,7 +43,7 @@ class Sword: public CombatWeapon {
     public:
         Sword(double damage, float critic, bool broken, QUALITY quality, float accuracy);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
         bool isBroken() const;
         QUALITY getQuality() const;
         float getAccuracy() const;
@@ -58,7 +58,7 @@ class Spear: public CombatWeapon {
     public:
         Spear(double damage, float critic, int reach, float sharpness, MATERIAL_T material);
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;    
+        double getDamage(float enemyResistance) override;    
     
         int getReach() const;
         float getSharpness() const;
@@ -77,7 +77,7 @@ class Club: public CombatWeapon {
     public:
         Club(double damage, float kg, bool hasSpykes, MATERIAL_T madeOf); // 0 critic
 
-        double getDamage(float enemyPhysicalResistance, float enemyMagicResistance) override;
+        double getDamage(float enemyResistance) override;
         bool hasSpykes() const;
         MATERIAL_T getMaterial() const;
 

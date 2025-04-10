@@ -9,10 +9,10 @@ Potion::Potion(double power, int level, set<string> effects, int duration, float
         effectiveness = calculateEffectiveness();
 }
 
-double Potion::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+double Potion::getDamage(float enemyResistance) {
     if (usesLeft > 0) {
         usesLeft--;
-        return magicPower*(1-enemyMagicResistance)*effectiveness;
+        return magicPower*(1-enemyResistance)*effectiveness;
     }
     else {
         cout << "No quedan más usos de la poción" << endl;
@@ -75,7 +75,7 @@ SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string 
 }
     
     
-    double SpellsBook::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+    double SpellsBook::getDamage(float enemyResistance) {
         float intensity;
         switch (spellsType) {
             case MAGIC_T::Light:
@@ -90,7 +90,7 @@ SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string 
             intensity = 0.9;
             break;
         }
-        return magicPower*intensity*(pagesAmount/100)*(1-enemyMagicResistance);
+        return magicPower*intensity*(pagesAmount/100)*(1-enemyResistance);
     }
     
     MAGIC_T SpellsBook::getSpellsType() const {
@@ -120,8 +120,8 @@ Amulet::Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, 
             intensity = calculateIntensity();
 }
 
-double Amulet::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
-    return magicPower*intensity*(1-enemyMagicResistance);
+double Amulet::getDamage(float enemyResistance) {
+    return magicPower*intensity*(1-enemyResistance);
 }
 
 MATERIAL_T Amulet::getMaterial() const {
@@ -186,7 +186,7 @@ Cane::Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int le
             strength = calculateStrength();
 }
 
-double Cane::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
+double Cane::getDamage(float enemyResistance) {
     float x, y;
     switch (hitEffect)
     {
@@ -218,7 +218,7 @@ double Cane::getDamage(float enemyPhysicalResistance, float enemyMagicResistance
         y = 0.9;
         break;
     }
-    return x*y*strength*(1-enemyMagicResistance);
+    return x*y*strength*(1-enemyResistance);
 }
 
 MATERIAL_T Cane::getMaterial() const {
