@@ -3,7 +3,6 @@
 #include "WeaponTypes.h"
 
 enum class MAGIC_T {Dark, Light, Anti};
-enum class MATERIAL_T {Wood, Steel, Diamond};
 enum class EFFECT_T {Thorns, Burn, Electrify};
 
 class Potion: public MagicItem {

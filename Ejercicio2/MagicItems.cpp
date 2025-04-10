@@ -7,12 +7,12 @@ Potion::Potion(double power, int level, set<string> effects, int duration, float
         effectsList = effects; 
         usesLeft = uses;
         effectiveness = calculateEffectiveness();
-    }
+}
 
 double Potion::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
     if (usesLeft > 0) {
         usesLeft--;
-        return magicPower*enemyMagicResistance*effectiveness;
+        return magicPower*(1-enemyMagicResistance)*effectiveness;
     }
     else {
         cout << "No quedan más usos de la poción" << endl;
@@ -71,7 +71,8 @@ SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string 
         spellsType(type),
         language(language),
         category(category),
-        author(author) {}
+        author(author) {
+}
     
     
     double SpellsBook::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
@@ -89,7 +90,7 @@ SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string 
             intensity = 0.9;
             break;
         }
-        return magicPower*intensity*(pagesAmount/100);
+        return magicPower*intensity*(pagesAmount/100)*(1-enemyMagicResistance);
     }
     
     MAGIC_T SpellsBook::getSpellsType() const {
@@ -117,10 +118,10 @@ Amulet::Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, 
         rarity(rarity),
         characterEffect(effect) {
             intensity = calculateIntensity();
-        }
+}
 
 double Amulet::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
-    return magicPower*intensity;
+    return magicPower*intensity*(1-enemyMagicResistance);
 }
 
 MATERIAL_T Amulet::getMaterial() const {
@@ -183,7 +184,7 @@ Cane::Cane(double power, int level, MATERIAL_T material, EFFECT_T effect, int le
         length(length),
         hardness(hardness) {
             strength = calculateStrength();
-        }
+}
 
 double Cane::getDamage(float enemyPhysicalResistance, float enemyMagicResistance) {
     float x, y;
@@ -217,7 +218,7 @@ double Cane::getDamage(float enemyPhysicalResistance, float enemyMagicResistance
         y = 0.9;
         break;
     }
-    return x*y*strength;
+    return x*y*strength*(1-enemyMagicResistance);
 }
 
 MATERIAL_T Cane::getMaterial() const {

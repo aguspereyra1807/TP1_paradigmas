@@ -25,3 +25,7 @@ double CombatWeapon::getDamage(float enemyPhysicalResistance, float enemyMagicRe
 string CombatWeapon::getType() const {
     return type;
 }
+
+bool CombatWeapon::isCritic() const {
+    return static_cast<float>(rand()) / RAND_MAX >= criticChance;
+}
