@@ -11,7 +11,7 @@ enum class WEAPON {Potion, SpellsBook, Amulet, Cane, SimpleAxe, DoubleAxe, Sword
 
 class CharacterFactory {
     public:
-        static unique_ptr<Character> makeCharacter(double health, float resistance, int weaponAmount);
+        static unique_ptr<Character> makeCharacter(int characterType, double health, float resistance);
     private:
         static unique_ptr<Weapon> makeWeapon(int weaponType, double damage);
         
@@ -20,4 +20,5 @@ class CharacterFactory {
         static bool randbool();
         static int weaponAmount();
         static int characterAmount();
+
 };

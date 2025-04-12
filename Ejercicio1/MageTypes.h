@@ -5,7 +5,7 @@ enum class ELEMENT_T {Fire, Ice, Electricity, Water, Air, Ground};
 
 class Sorcerer: public Mage {
     public:
-        Sorcerer(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons, ELEMENT_T elem);
+        Sorcerer(double health, float resistance, vector<unique_ptr<MagicItem>> weapons, ELEMENT_T elem);
         ELEMENT_T getElementType() const;
     private:
         const ELEMENT_T elementType;
@@ -13,7 +13,7 @@ class Sorcerer: public Mage {
 
 class Conjurer: public Mage {
     public:
-        Conjurer(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons);
+        Conjurer(double health, float resistance, vector<unique_ptr<MagicItem>> weapons);
         void summonCreature(string creature);
         void showSummonedCreatures() const;
     private:
@@ -22,7 +22,7 @@ class Conjurer: public Mage {
 
 class Wizard: public Mage {
     public:
-        Wizard(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons);
+        Wizard(double health, float resistance, vector<unique_ptr<MagicItem>> weapons);
         void makePotion(string newPotion);
         void showPotions() const;
     private:
@@ -31,7 +31,7 @@ class Wizard: public Mage {
 
 class Necromancer: public Mage {
     public:
-        Necromancer(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons, int souls);
+        Necromancer(double health, float resistance, vector<unique_ptr<MagicItem>> weapons, int souls);
         int getSoulStealedAmount() const;
     private:
         const int soulsStealed;

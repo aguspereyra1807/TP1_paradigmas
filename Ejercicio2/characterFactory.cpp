@@ -29,9 +29,9 @@ unique_ptr<Weapon> CharacterFactory::makeWeapon(int weaponType, double damage) {
         return nullptr;
     }
 
-    WEAPON weapon = static_cast<WEAPON>(weaponType);
+    WEAPON weaponClass = static_cast<WEAPON>(weaponType);
 
-    switch (weapon) {
+    switch (weaponClass) {
 
         case WEAPON::Potion: {
 
@@ -123,7 +123,94 @@ unique_ptr<Weapon> CharacterFactory::makeWeapon(int weaponType, double damage) {
             bool spykes = randbool();
             MATERIAL_T material = static_cast<MATERIAL_T>(randint(0,2));
             return make_unique<Club>(damage, criticChance, weight, spykes, material);
+
+
+        }
+    }
+}
+
+unique_ptr<Character> CharacterFactory::makeCharacter(int characterType, double health, float resistance) {
+    
+    bool isMage = false;
+
+    if (characterType > 8 || characterType < 0) {
+        cerr << "Índice fuera de rango" << endl;
+        return nullptr;
+    }
+    else if (characterType >= 4) isMage = true;
+
+    vector<unique_ptr<Weapon>> weaponList;
+
+    for (int i = 0; i < weaponAmount(); ++i) {
+        int weaponType;
+        if (isMage)  weaponType = randint(0,3);
+        else weaponType = randint(4,8);
+
+        double baseDamage = static_cast<double>(randint(1,10));
+        weaponList.push_back(makeWeapon(weaponType, baseDamage));
+    }
+
+    CHARACTER characterClass = static_cast<CHARACTER>(characterType);
+
+    switch(characterClass) {
+
+        case CHARACTER::Sorcerer: {
+
+            ELEMENT_T element = static_cast<ELEMENT_T>(randint(0,5));
+            return make_unique<Sorcerer>(health, resistance, weaponList, element);
+
+        }
+
+        case CHARACTER::Conjurer: {
+
+            return make_unique<Conjurer>(health, resistance, weaponList);
             
+        }
+
+        case CHARACTER::Wizard: {
+            
+            return make_unique<Wizard>(health, resistance, weaponList);
+
+        }
+
+        case CHARACTER::Necromancer: {
+            
+            int souls = randint(1, 5);
+            return make_unique<Necromancer>(health, resistance, weaponList, souls);
+
+        }
+
+        case CHARACTER::Barbarian: {
+            
+            float musclePercentage = randfloat(1.0,2.0);
+            return make_unique<Barbarian>(health, resistance, weaponList, musclePercentage);
+            
+        }
+        
+        case CHARACTER::Paladin: {
+            
+            GOD invoquedBy = static_cast<GOD>(randint(0,3));
+            return make_unique<Paladin>(health, resistance, weaponList, invoquedBy);
+        }
+
+        case CHARACTER::Knight: {
+
+            REGION region = static_cast<REGION>(randint(0,3));
+            return make_unique<Knight>(health, resistance, weaponList, region);
+        }
+
+        case CHARACTER::Mercenary: {
+
+            int jobsDone = randint(1,10);
+            double price = static_cast<double>(randfloat(10.0,100.0));
+            return make_unique<Mercenary>(health, resistance, weaponList, jobsDone, price);
+
+        }
+
+        case CHARACTER::Gladiator: {
+
+            int championAmount = randint(1,5);
+            return make_unique<Gladiator>(health, resistance, weaponList, championAmount);
 
         }
     }

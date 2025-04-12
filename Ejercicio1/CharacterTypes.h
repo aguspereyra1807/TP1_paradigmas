@@ -8,11 +8,11 @@ using namespace std;
 
 class Mage: public Character {
     public:
-        Mage(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons);
+        Mage(double health, float resistance, string name, vector<unique_ptr<MagicItem>> weapons);
         virtual double receiveDamage(double damage);
         double getHP() const override;
         vector<unique_ptr<MagicItem>> getOwnedWeapons() const;
-
+        
     protected:
         double hp;
         const float resistance;

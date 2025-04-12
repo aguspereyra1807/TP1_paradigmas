@@ -3,7 +3,7 @@
 
 // Sorcerer
 
-Sorcerer::Sorcerer(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons, ELEMENT_T elem)
+Sorcerer::Sorcerer(double health, float resistance, vector<unique_ptr<MagicItem>> weapons, ELEMENT_T elem)
     :   Mage(health, resistance, "Sorcerer", weapons), elementType(elem) {
 }
 
@@ -13,7 +13,7 @@ ELEMENT_T Sorcerer::getElementType() const {
 
 // Conjurer
 
-Conjurer::Conjurer(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons) 
+Conjurer::Conjurer(double health, float resistance, vector<unique_ptr<MagicItem>> weapons) 
     :   Mage(health, resistance, "Sorcerer", weapons) {
     summonedCreatures = vector<string>();
     summonCreature("Cyclop");
@@ -33,7 +33,7 @@ void Conjurer::showSummonedCreatures() const {
 
 // Wizard
 
-Wizard::Wizard(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons) 
+Wizard::Wizard(double health, float resistance, vector<unique_ptr<MagicItem>> weapons) 
     :   Mage(health, resistance, "Wizard", weapons) {
     potions = vector<string>();
     makePotion("Essence of Fury");
@@ -53,7 +53,7 @@ void Wizard::showPotions() const {
 
 // Necromancer
 
-Necromancer::Necromancer(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons, int souls)
+Necromancer::Necromancer(double health, float resistance, vector<unique_ptr<MagicItem>> weapons, int souls)
     :   Mage(health, resistance, "Wizard", weapons), soulsStealed(souls) {
 }
 

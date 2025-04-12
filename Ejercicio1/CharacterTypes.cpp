@@ -4,7 +4,7 @@ using namespace std;
 
 // Mage
 
-Mage::Mage(double health, float resistance, string name, vector<shared_ptr<MagicItem>> weapons): resistance(resistance), type(name) {
+Mage::Mage(double health, float resistance, string name, vector<unique_ptr<MagicItem>> weapons): resistance(resistance), type(name) {
     hp = health;
     ownedWeapons = weapons;
 }
@@ -19,12 +19,12 @@ double Mage::getHP() const {
     return hp;
 }
 
-vector<shared_ptr<MagicItem>> Mage::getOwnedWeapons() const {
+vector<unique_ptr<MagicItem>> Mage::getOwnedWeapons() const {
     return ownedWeapons;
 }
 
 // Warrios
-Warrior::Warrior(double health, float resistance, string name, vector<shared_ptr<CombatWeapon>> weapons): resistance(resistance), type(name) {
+Warrior::Warrior(double health, float resistance, string name, vector<unique_ptr<CombatWeapon>> weapons): resistance(resistance), type(name) {
     hp = health;
     ownedWeapons = weapons;
 }
@@ -38,6 +38,6 @@ double Warrior::getHP() const {
     return hp;
 }
 
-vector<shared_ptr<MagicItem>> Mage::getOwnedWeapons() const {
+vector<unique_ptr<MagicItem>> Mage::getOwnedWeapons() const {
     return ownedWeapons;
 }
