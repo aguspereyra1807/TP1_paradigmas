@@ -65,13 +65,11 @@ float Potion::calculateEffectiveness() {
 
 // SpellsBook
 
-SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author)
+SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string language)
     :   MagicItem(power, level, "Spells Book"),
         pagesAmount(pages),
         spellsType(type),
-        language(language),
-        category(category),
-        author(author) {
+        language(language) {
 }
     
     
@@ -93,25 +91,17 @@ SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string 
         return magicPower*intensity*(pagesAmount/100)*(1-enemyResistance);
     }
     
-    MAGIC_T SpellsBook::getSpellsType() const {
-        return spellsType;
-    }
+MAGIC_T SpellsBook::getSpellsType() const {
+    return spellsType;
+}
 
 string SpellsBook::getLanguage() const {
     return language;
 }
 
-string SpellsBook::getCategory() const {
-    return category;
-}
-
-string SpellsBook::getAuthor() const {
-    return author;
-}
-
 // Amulet
 
-Amulet::Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect)
+Amulet::Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, EFFECT_T effect)
     :   MagicItem(power, level, "Amulet"),
         material(material),
         magicType(magicType),
@@ -136,7 +126,7 @@ int Amulet::getRarity() const {
     return rarity;
 }
 
-string Amulet::getCharacterEffect() const {
+EFFECT_T Amulet::getCharacterEffect() const {
     return characterEffect;
 }
 

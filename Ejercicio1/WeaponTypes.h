@@ -13,7 +13,7 @@ class MagicItem: public Weapon { // Clase Abstracta
         virtual double getDamage(float enemyResistance) override;
         string getType() const override;
 
-        protected:
+    protected: 
         const string type;
         const int magicLevel;
         const double magicPower;

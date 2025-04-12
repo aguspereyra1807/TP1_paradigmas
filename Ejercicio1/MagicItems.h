@@ -32,27 +32,23 @@ class Potion: public MagicItem {
 
 class SpellsBook: public MagicItem {
     public:
-        SpellsBook(double power, int level, MAGIC_T type, int pages, string language, string category, string author);
+        SpellsBook(double power, int level, MAGIC_T type, int pages, string language);
         
         double getDamage(float enemyResistance) override;
         string getType() const override;
         
         MAGIC_T getSpellsType() const;
         string getLanguage() const;
-        string getCategory() const;
-        string getAuthor() const;
         
     private:
         const int pagesAmount;
         const MAGIC_T spellsType;
         const string language;
-        const string category;
-        const string author;
 };
 
 class Amulet: public MagicItem {
     public:
-        Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, string effect);
+        Amulet(double power, int level, MATERIAL_T material, MAGIC_T magicType, int rarity, EFFECT_T effect);
 
         double getDamage(float enemyResistance) override;
         string getType() const override;
@@ -60,14 +56,14 @@ class Amulet: public MagicItem {
         MATERIAL_T getMaterial() const;
         MAGIC_T getMagicType() const;
         int getRarity() const;
-        string getCharacterEffect() const;
+        EFFECT_T getCharacterEffect() const;
 
     private:
         const MATERIAL_T material;
         const MAGIC_T magicType;
         float intensity;
         const int rarity; // 1-5
-        const string characterEffect;
+        const EFFECT_T characterEffect;
 
         float calculateIntensity();
 };
