@@ -11,7 +11,8 @@ class MagicItem: public Weapon { // Clase Abstracta
     public:
         MagicItem(double power, int level, const string name);
         virtual double getDamage(float enemyResistance) override;
-        string getType() const override;
+        virtual string getType() const override;
+        ~MagicItem();
 
     protected: 
         const string type;
@@ -23,12 +24,13 @@ class CombatWeapon: public Weapon { // Clase Abstracta
     public:
         CombatWeapon(double damage, float critic, const string name);
         virtual double getDamage(float enemyResistance) override;
-        string getType() const override;
+        virtual string getType() const override;
         
     protected:
         const string type;
         const float criticChance = 0.0;
         const double physicalDamage;
-        
+        ~CombatWeapon();
+
         bool isCritic() const;
 };

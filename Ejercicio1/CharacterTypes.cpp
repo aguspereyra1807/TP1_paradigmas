@@ -4,9 +4,8 @@ using namespace std;
 
 // Mage
 
-Mage::Mage(double health, float resistance, string name, vector<unique_ptr<MagicItem>> weapons): resistance(resistance), type(name) {
+Mage::Mage(double health, float resistance, string name, vector<unique_ptr<Weapon>> weapons): resistance(resistance), type(name), ownedWeapons(std::move(weapons)) {
     hp = health;
-    ownedWeapons = weapons;
 }
 
 // Recibe más daño
@@ -17,10 +16,6 @@ double Mage::receiveDamage(double damage) {
 
 double Mage::getHP() const {
     return hp;
-}
-
-vector<unique_ptr<MagicItem>> Mage::getOwnedWeapons() const {
-    return ownedWeapons;
 }
 
 float Mage::getResistance() const {
@@ -36,9 +31,8 @@ pair<string, double> Mage::doDamage(double enemyResistance) const {
 }
 
 // Warrios
-Warrior::Warrior(double health, float resistance, string name, vector<unique_ptr<CombatWeapon>> weapons): resistance(resistance), type(name) {
+Warrior::Warrior(double health, float resistance, string name, vector<unique_ptr<Weapon>> weapons): resistance(resistance), type(name), ownedWeapons(std::move(weapons)) {
     hp = health;
-    ownedWeapons = weapons;
 }
 
 double Warrior::receiveDamage(double damage) {
@@ -48,10 +42,6 @@ double Warrior::receiveDamage(double damage) {
 
 double Warrior::getHP() const {
     return hp;
-}
-
-vector<unique_ptr<MagicItem>> Mage::getOwnedWeapons() const {
-    return ownedWeapons;
 }
 
 float Warrior::getResistance() const {

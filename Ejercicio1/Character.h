@@ -1,5 +1,9 @@
 #pragma once
 #include <vector>
+#include <utility>
+#include <string>
+
+using namespace std;
 
 class Character {
     public:

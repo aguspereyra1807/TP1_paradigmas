@@ -6,7 +6,7 @@ enum class GOD {Tyr, Baldr, Thor, Loki};
 
 class Barbarian: public Warrior {
     public:
-        Barbarian(double health, float resistance, vector<shared_ptr<CombatWeapon>> weapons, float muscle);
+        Barbarian(double health, float resistance, vector<unique_ptr<Weapon>> weapons, float muscle);
         void train(); // + musclePercentage
     private:
         float musclePercentage;
@@ -14,7 +14,7 @@ class Barbarian: public Warrior {
 
 class Paladin: public Warrior {
     public:
-        Paladin(double health, float resistance, vector<shared_ptr<CombatWeapon>> weapons, GOD god);
+        Paladin(double health, float resistance, vector<unique_ptr<Weapon>> weapons, GOD god);
         GOD invoquedBy() const;
     private:
         GOD servingTo;
@@ -22,7 +22,7 @@ class Paladin: public Warrior {
 
 class Knight: public Warrior {
     public:
-        Knight(double health, float resistance, vector<shared_ptr<CombatWeapon>> weapons, REGION zone);
+        Knight(double health, float resistance, vector<unique_ptr<Weapon>> weapons, REGION zone);
         REGION getGuardingZone() const;
         void horseRide(); // +speed
     private:
@@ -32,7 +32,7 @@ class Knight: public Warrior {
 
 class Mercenary: public Warrior {
     public:
-        Mercenary(double health, float resistance, vector<shared_ptr<CombatWeapon>> weapons, int jobs, double price);
+        Mercenary(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int jobs, double price);
         
     private:
         const int jobsDone;
@@ -44,7 +44,7 @@ class Mercenary: public Warrior {
 
 class Gladiator: public Warrior {
     public:
-        Gladiator(double health, float resistance, vector<shared_ptr<CombatWeapon>> weapons, int championAmount);
+        Gladiator(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int championAmount);
         int getChampionCounter() const;
         void winChampionship();
     private:

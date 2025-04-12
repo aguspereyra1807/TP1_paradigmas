@@ -121,7 +121,7 @@ void Spear::reinforceTip() {
 // Club
 
 Club::Club(double damage, float kg, bool hasSpykes, MATERIAL_T madeOf)
-    :   CombatWeapon(damage, 0, "Club"), weight(kg), spykes(hasSpykes), material(material) {
+    :   CombatWeapon(damage, 0, "Club"), weight(kg), spykes(hasSpykes), material(madeOf) {
 }
 
 double Club::getDamage(float enemyResistance) {

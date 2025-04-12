@@ -1,6 +1,5 @@
 #include "WeaponTypes.h"
 
-
 // Magic Item
 
 MagicItem::MagicItem(double power, int level, const string name): magicPower(power), magicLevel(level), type(name) {}
@@ -13,6 +12,8 @@ double MagicItem::getDamage(float enemyResistance) {
 string MagicItem::getType() const {
     return type;
 }
+
+MagicItem::~MagicItem() {}
 
 // Combat Weapon
 
@@ -29,3 +30,5 @@ string CombatWeapon::getType() const {
 bool CombatWeapon::isCritic() const {
     return static_cast<float>(rand()) / RAND_MAX >= criticChance;
 }
+
+CombatWeapon::~CombatWeapon() {}

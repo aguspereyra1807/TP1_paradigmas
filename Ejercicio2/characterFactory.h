@@ -1,8 +1,8 @@
 #pragma once
-#include "MageTypes.h"
-#include "WarriorTypes.h"
-#include "MagicItems.h"
-#include "CombatWeapons.h"
+#include "../Ejercicio1/MageTypes.h"
+#include "../Ejercicio1/WarriorTypes.h"
+#include "../Ejercicio1/MagicItems.h"
+#include "../Ejercicio1/CombatWeapons.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -11,7 +11,7 @@ enum class WEAPON {Potion, SpellsBook, Amulet, Cane, SimpleAxe, DoubleAxe, Sword
 
 class CharacterFactory {
     public:
-        static unique_ptr<Character> makeCharacter(int characterType, double health, float resistance);
+        static unique_ptr<Character> makeCharacter(int characterType, double health, float resistance, int weaponAmount);
         static int randint(int min, int max);
         static float randfloat(float min, float max);
     
