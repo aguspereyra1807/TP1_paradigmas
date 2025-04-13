@@ -77,16 +77,17 @@ SpellsBook::SpellsBook(double power, int level, MAGIC_T type, int pages, string 
         float intensity;
         switch (spellsType) {
             case MAGIC_T::Light:
-            intensity = 1.0;
-            break;
+                intensity = 1.0;
+                break;
             case MAGIC_T::Anti:
-            intensity = 1.25;
-            break;
+                intensity = 1.25;
+                break;
             case MAGIC_T::Dark:
-            intensity = 1.5;
+                intensity = 1.5;
+                break;
             default:
-            intensity = 0.9;
-            break;
+                intensity = 0.9;
+                break;
         }
         return magicPower*intensity*(pagesAmount/100)*(1-enemyResistance);
     }

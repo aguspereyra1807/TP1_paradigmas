@@ -10,8 +10,6 @@ void enterToContinue();
 
 int main() {
     // Creación de personajes
-    int player2Type = CharacterFactory::randint(0,8);
-
     unique_ptr<Character> player2 = CharacterFactory::makeCharacter(CharacterFactory::randint(0,8), 100, CharacterFactory::randfloat(0.0,0.5), 1);
     
     cout << "Choose your character" << endl;
