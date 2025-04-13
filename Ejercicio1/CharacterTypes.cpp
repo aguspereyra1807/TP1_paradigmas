@@ -10,8 +10,12 @@ Mage::Mage(double health, float resistance, string name, vector<unique_ptr<Weapo
 
 // Recibe más daño
 double Mage::receiveDamage(double damage) {
-    hp -= damage*1.10;
-    return damage*1.10;
+    if (damage > hp) {
+        hp = 0;
+        return damage;
+    }
+    hp -= damage;
+    return damage;
 }
 
 double Mage::getHP() const {
@@ -36,8 +40,12 @@ Warrior::Warrior(double health, float resistance, string name, vector<unique_ptr
 }
 
 double Warrior::receiveDamage(double damage) {
-    hp -= damage*0.90;
-    return damage*0.90;
+    if (damage > hp) {
+        hp = 0;
+        return damage;
+    }
+    hp -= damage;
+    return damage;
 }
 
 double Warrior::getHP() const {

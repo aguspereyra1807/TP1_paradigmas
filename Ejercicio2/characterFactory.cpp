@@ -146,7 +146,7 @@ unique_ptr<Character> CharacterFactory::makeCharacter(int characterType, double 
         if (isMage)  weaponType = randint(0,3);
         else weaponType = randint(4,8);
 
-        double baseDamage = static_cast<double>(randint(1,10));
+        double baseDamage = static_cast<double>(randint(7,10));
         unique_ptr<Weapon> weapon = makeWeapon(weaponType, baseDamage);
 
         weaponList.push_back(move(weapon));
