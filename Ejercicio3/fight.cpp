@@ -4,7 +4,8 @@
 
 //  1->Golpe Fuerte | 2->Golpe Rápido | 3->Defensa y Golpe
 
-// 0->empate | 1->gana player1 | 2->gana player2
+// 0 -> empate | 1 > gana player1 | 2 -> gana player2
+
 int decideWinner(int player1Move, int player2Move);
 void enterToContinue();
 
@@ -15,9 +16,9 @@ int main() {
     vector<int> weapons2 = {CharacterFactory::randint(0,8)};
     unique_ptr<Character> player2 = CharacterFactory::makeCharacter(CharacterFactory::randint(0,8), 100, CharacterFactory::randfloat(0.1,0.5), weapons2);
     
-    cout << "Choose your character" << endl;
-    cout << "\t- 1.Sorcerer\n\t- 2.Conjurer\n\t- 3.Wizard\n\t- 4.Necromancer\n\t- 5.Barbarian\n\t- 6.Paladin\n\t- 7.Knight\n\t- 8.Mercenary\n\t- 9.Gladiator\n" << endl;
-    cout << "> ";
+    cout << "\n\t\tChoose your character" << endl;
+    cout << "\t- 1.Sorcerer\n\t- 2.Conjurer\n\t- 3.Wizard\n\t- 4.Necromancer\n\t- 5.Barbarian\n\t- 6.Paladin\n\t- 7.Knight\n\t- 8.Mercenary\n\t- 9.Gladiator" << endl;
+    cout << ">> ";
     int player1Type;
     cin >> player1Type;
     if (cin.fail() || player1Type < 0 || player1Type > 9) {
@@ -26,9 +27,9 @@ int main() {
     }
 
     vector<int> weapons1;
-    cout << "Choose your weapon" << endl;
-    cout << "\t- 1.Potion\n\t- 2.Speels Book\n\t- 3.Amulet\n\t- 4.Cane\n\t- 5.Simple Axe\n\t- 6.Double Axe\n\t- 7.Sword\n\t- 8.Spear\n\t- 9.Club\n" << endl;
-    cout << "> ";
+    cout << "\n\t\tChoose your weapon" << endl;
+    cout << "\t- 1.Potion\n\t- 2.Speels Book\n\t- 3.Amulet\n\t- 4.Cane\n\t- 5.Simple Axe\n\t- 6.Double Axe\n\t- 7.Sword\n\t- 8.Spear\n\t- 9.Club" << endl;
+    cout << ">> ";
     int weapon1Type;
     cin >> weapon1Type;
     if (cin.fail() || weapon1Type < 0 || weapon1Type > 9) {
@@ -39,6 +40,11 @@ int main() {
 
     unique_ptr<Character> player1 = CharacterFactory::makeCharacter(player1Type-1, 100, CharacterFactory::randfloat(0.1,0.5), weapons1);
 
+    if (!player1 || !player2) {
+        cerr << "Not possible to create the players" << endl;
+        return 1;
+    }
+
     cout << "Players created succesfuly" << endl;
     enterToContinue();
 
@@ -48,7 +54,7 @@ int main() {
         cout << "==================================================================\n" 
              << "|| 1. Strong Attack || 2. Quick Attack || 3. Defense and Attack ||\n" 
              << "==================================================================" << endl;
-        cout << "> ";
+        cout << ">> ";
         int move1, move2, winner;
         cin.clear();
         cin >> move1;
