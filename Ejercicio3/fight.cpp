@@ -9,6 +9,8 @@ int decideWinner(int player1Move, int player2Move);
 void enterToContinue();
 
 int main() {
+    srand(static_cast<unsigned int>(time(0)));
+
     // Creación de personajes
     vector<int> weapons2 = {CharacterFactory::randint(0,8)};
     unique_ptr<Character> player2 = CharacterFactory::makeCharacter(CharacterFactory::randint(0,8), 100, CharacterFactory::randfloat(0.1,0.5), weapons2);

@@ -6,8 +6,7 @@ float CharacterFactory::randfloat(float min, float max) {
 }
 
 int CharacterFactory::randint(int min, int max) {
-    srand(static_cast<unsigned int>(time(0)));
-    return min + (rand() % max - min + 1);
+    return min + (rand() % (max - min + 1));
 } 
 
 bool CharacterFactory::randbool() {
