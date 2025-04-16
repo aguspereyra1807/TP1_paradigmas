@@ -6,8 +6,8 @@
 #include <cstdlib>
 #include <ctime>
 
-enum class CHARACTER {Sorcerer, Conjurer, Wizard, Necromancer, Barbarian, Paladin, Knight, Mercenary, Gladiator}; 
-enum class WEAPON {Potion, SpellsBook, Amulet, Cane, SimpleAxe, DoubleAxe, Sword, Spear, Club};
+enum class CHARACTER {Sorcerer=0, Conjurer, Wizard, Necromancer, Barbarian, Paladin, Knight, Mercenary, Gladiator}; 
+enum class WEAPON {Potion=0, SpellsBook, Amulet, Cane, SimpleAxe, DoubleAxe, Sword, Spear, Club};
 
 class CharacterFactory {
     public:

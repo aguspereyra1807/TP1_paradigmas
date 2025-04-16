@@ -17,9 +17,6 @@ OBJ_FILES3 = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES3))
 TARGET2 = $(BIN_DIR)/main2
 TARGET3 = $(BIN_DIR)/main3
 
-# Regla por defecto
-all: $(TARGET2) $(TARGET3)
-
 # Regla para compilar ejercicio 2
 $(TARGET2): $(OBJ_FILES2)
 	@mkdir -p $(BIN_DIR)

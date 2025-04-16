@@ -36,7 +36,7 @@ int main() {
         cout << "Invalid input" << endl;
         return 1;
     }
-    weapons1.push_back(weapon1Type);
+    weapons1.push_back(weapon1Type-1);
 
     unique_ptr<Character> player1 = CharacterFactory::makeCharacter(player1Type-1, 100, CharacterFactory::randfloat(0.1,0.5), weapons1);
 

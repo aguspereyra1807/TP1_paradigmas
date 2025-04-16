@@ -29,6 +29,7 @@ unique_ptr<Weapon> CharacterFactory::makeWeapon(int weaponType, double damage) {
     }
 
     WEAPON weaponClass = static_cast<WEAPON>(weaponType);
+    cout << "Arma a elegir: " << weaponType << endl;
 
     switch (weaponClass) {
 
@@ -129,7 +130,7 @@ unique_ptr<Weapon> CharacterFactory::makeWeapon(int weaponType, double damage) {
 }
 
 unique_ptr<Character> CharacterFactory::makeCharacter(int characterType, double health, float resistance, vector<int> weaponTypes) {
-    
+
     if (characterType > 8 || characterType < 0) {
         cerr << "Índice fuera de rango" << endl;
         return nullptr;
@@ -138,8 +139,8 @@ unique_ptr<Character> CharacterFactory::makeCharacter(int characterType, double 
     vector<unique_ptr<Weapon>> weaponList;
     
     for (int type : weaponTypes) {
-        if (type < 8 && type > 0) {
-        double baseDamage = static_cast<double>(randint(7,10));
+        if (type <= 8 && type >= 0) {
+        double baseDamage = static_cast<double>(randint(8,11));
         unique_ptr<Weapon> weapon = makeWeapon(type, baseDamage);
         weaponList.push_back(move(weapon));
         }

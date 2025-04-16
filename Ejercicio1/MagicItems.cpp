@@ -15,7 +15,7 @@ double Potion::getDamage(float enemyResistance) {
         return magicPower*(1-enemyResistance)*effectiveness;
     }
     else {
-        cout << "No quedan más usos de la poción" << endl;
+        cout << "The potion is empty!" << endl;
         return 0;
     }
 }

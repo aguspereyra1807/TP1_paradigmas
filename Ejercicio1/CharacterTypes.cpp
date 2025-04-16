@@ -27,7 +27,7 @@ float Mage::getResistance() const {
 }
 
 pair<string, double> Mage::doDamage(float enemyResistance) const {
-    if (ownedWeapons.empty()) return pair<string, double>("", 0.0);
+    if (ownedWeapons.empty()) return pair<string, double>("nothing", 0.0);
 
     int index = rand() % (ownedWeapons.size());
 
@@ -61,7 +61,7 @@ float Warrior::getResistance() const {
 }
 
 pair<string, double> Warrior::doDamage(float enemyResistance) const {
-    if (ownedWeapons.empty()) return pair<string, double>("", 0.0);
+    if (ownedWeapons.empty()) return pair<string, double>("nothing", 0.0);
     
     int index = rand() % (ownedWeapons.size());
 
