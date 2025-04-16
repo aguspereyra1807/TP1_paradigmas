@@ -3,8 +3,8 @@
 
 // Sorcerer
 
-Sorcerer::Sorcerer(double health, float resistance, vector<unique_ptr<Weapon>> weapons, ELEMENT_T elem)
-    :   Mage(health, resistance, "Sorcerer", move(weapons)), elementType(elem) {
+Sorcerer::Sorcerer(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int mana, ELEMENT_T elem)
+    :   Mage(health, resistance, "Sorcerer", move(weapons), mana), elementType(elem) {
 }
 
 ELEMENT_T Sorcerer::getElementType() const {
@@ -13,8 +13,8 @@ ELEMENT_T Sorcerer::getElementType() const {
 
 // Conjurer
 
-Conjurer::Conjurer(double health, float resistance, vector<unique_ptr<Weapon>> weapons) 
-    :   Mage(health, resistance, "Sorcerer", move(weapons)) {
+Conjurer::Conjurer(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int mana) 
+    :   Mage(health, resistance, "Sorcerer", move(weapons), mana) {
     summonedCreatures = vector<string>();
     summonCreature("Cyclop");
     summonCreature("Wraith");
@@ -33,8 +33,8 @@ void Conjurer::showSummonedCreatures() const {
 
 // Wizard
 
-Wizard::Wizard(double health, float resistance, vector<unique_ptr<Weapon>> weapons) 
-    :   Mage(health, resistance, "Wizard", move(weapons)) {
+Wizard::Wizard(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int mana) 
+    :   Mage(health, resistance, "Wizard", move(weapons), mana) {
     potions = vector<string>();
     makePotion("Essence of Fury");
     makePotion("Venomous Ichor");
@@ -53,8 +53,8 @@ void Wizard::showPotions() const {
 
 // Necromancer
 
-Necromancer::Necromancer(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int souls)
-    :   Mage(health, resistance, "Wizard", move(weapons)), soulsStealed(souls) {
+Necromancer::Necromancer(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int mana, int souls)
+    :   Mage(health, resistance, "Wizard", move(weapons), mana), soulsStealed(souls) {
 }
 
 int Necromancer::getSoulStealedAmount() const {

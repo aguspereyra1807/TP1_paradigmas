@@ -85,4 +85,4 @@ class Club: public CombatWeapon {
         const float weight;
         const bool spykes;
         const MATERIAL_T material;
-};
+};  

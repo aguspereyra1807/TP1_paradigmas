@@ -98,7 +98,7 @@ Spear::Spear(double damage, float critic, int reach, float sharpness, MATERIAL_T
 }
 
 double Spear::getDamage(float enemyResistance) {
-    if (isCritic()) return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyResistance)* 1.75;
+    if (isCritic()) return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyResistance)*1.75;
     else return physicalDamage*sharpness*(pierceLevel / 5)*(1-enemyResistance);
 }
 

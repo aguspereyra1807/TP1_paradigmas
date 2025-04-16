@@ -2,8 +2,8 @@
 
 // Barbarian
 
-Barbarian::Barbarian(double health, float resistance, vector<unique_ptr<Weapon>> weapons, float muscle)
-    : Warrior(health, resistance, "Barbarian", move(weapons)) {
+Barbarian::Barbarian(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int stamina, float muscle)
+    : Warrior(health, resistance, "Barbarian", move(weapons), stamina) {
     musclePercentage = muscle;
 }
 
@@ -13,8 +13,8 @@ void Barbarian::train() {
 
 // Paladin
 
-Paladin::Paladin(double health, float resistance, vector<unique_ptr<Weapon>> weapons, GOD god)
-    :   Warrior(health, resistance, "Paladin", move(weapons)), servingTo(god) {
+Paladin::Paladin(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int stamina, GOD god)
+    :   Warrior(health, resistance, "Paladin", move(weapons), stamina), servingTo(god) {
 }
 
 GOD Paladin::invoquedBy() const {
@@ -23,8 +23,8 @@ GOD Paladin::invoquedBy() const {
 
 // Knight
 
-Knight::Knight(double health, float resistance, vector<unique_ptr<Weapon>> weapons, REGION zone)
-    :   Warrior(health, resistance, "Knight", move(weapons)), guardingZone(zone) {
+Knight::Knight(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int stamina, REGION zone)
+    :   Warrior(health, resistance, "Knight", move(weapons), stamina), guardingZone(zone) {
     speed = 5; // km/h
 }
 
@@ -38,8 +38,8 @@ void Knight::horseRide() {
 
 // Mercenary
 
-Mercenary::Mercenary(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int jobs, double price)
-    :   Warrior(health, resistance, "Mercenary", move(weapons)), jobsDone(jobs), priceForJob(price) {
+Mercenary::Mercenary(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int stamina, int jobs, double price)
+    :   Warrior(health, resistance, "Mercenary", move(weapons), stamina), jobsDone(jobs), priceForJob(price) {
     money = calculateMoney();
 }
 
@@ -49,8 +49,8 @@ double Mercenary::calculateMoney() const {
 
 // Gladiator
 
-Gladiator::Gladiator(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int championAmount)
-    :   Warrior(health, resistance, "Gladiator", move(weapons)) {
+Gladiator::Gladiator(double health, float resistance, vector<unique_ptr<Weapon>> weapons, int stamina, int championAmount)
+    :   Warrior(health, resistance, "Gladiator", move(weapons), stamina) {
     championCounter = championAmount;
 }
 

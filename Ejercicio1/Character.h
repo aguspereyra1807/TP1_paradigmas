@@ -11,7 +11,7 @@ class Character {
         virtual double receiveDamage(double damage) = 0;
 
         virtual float getResistance() const = 0;
-        virtual pair<string, double> doDamage(double enemyResistance) const = 0; // weaponType, damageToDo
+        virtual pair<string, double> doDamage(float enemyResistance) const = 0; // weaponType, damageToDo
 
         virtual ~Character() = default;
 };
